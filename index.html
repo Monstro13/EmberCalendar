@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ember Calendar</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script type="text/javascript" src="js/libs/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/libs/handlebars-1.1.2.js"></script>
+    <script type="text/javascript" src="js/libs/ember-1.5.1.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/router.js"></script>
+    <script type="text/javascript" src="js/controllers/calendar_controller.js"></script>
+    <script type="text/javascript" src="js/helpers/month_helper.js"></script>
+</head>
+<body>
+
+    <script type="text/x-handlebars" data-template-name="calendar">
+  <div class="content-wrap">
+      <div class="calendar-container"> 
+      <div class="current-date"> 
+        <a href="javascript:void(0)">{{formatMonth month_value}}</a>
+        <a href="javascript:void(0)">{{year_value}}</a>
+      </div> 
+      <div class="buttons-container"> 
+          <button id="prevYear" {{action "prevYear"}}>&#171;</button>
+          <button id="prevMonth" {{action "prevMonth"}}>&#60;</button>
+          <button id="today" {{action "goToDay"}}>ToDay</button>
+          <button id="nextMonth" {{action "nextMonth"}}>&#62;</button>
+          <button id="nextYear" {{action "nextYear"}}>&#187;</button>
+        </div>
+      	<table>
+      	<thead>
+      	<tr>
+      		<th>Mon
+      		</th>
+      		<th>Thu
+      		</th>
+      		<th>Wed
+      		</th>
+      		<th>Thu
+      		</th>
+      		<th>Fri
+      		</th>
+      		<th>Sat
+      		</th>
+      		<th>Sun
+      		</th>
+      	</tr>
+      	</thead>
+      	<tbody>
+      		{{#each week in weeks}}
+            <tr>
+              	{{#each day in week}}
+                	<td>
+                    <a {{bind-attr class="day.isToday:today day.isSelected:selected"}} {{action "goToAnotherDay" day}} href="javascipt:void(0)">{{day.title}}</a>
+                  </td>
+              	{{/each}}
+            </tr>
+          {{/each}}
+      	</tbody>
+      	</table>
+        </div>
+      </div>
+    </script>
+
+</body>
+</html>
